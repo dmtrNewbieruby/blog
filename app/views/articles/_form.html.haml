@@ -1,0 +1,45 @@
+- if @article.errors.any?
+	#error_explanation
+			
+		%h2
+			= pluralize(@article.errors.count, "error")
+			prohibited this article from being saved:
+		%ul
+			- @article.errors.full_messages.each do |msg|
+							
+				%li= msg
+					
+				
+		
+
+= form_for @article do |f|
+	.div.col-4
+		.c-field
+			= f.label :author, class: 'c-field__label'
+			= f.text_field :author, class: 'c-input', :placeholder => "Автор"
+			%small.c-field__message.u-color-success
+
+		.c-field
+			= f.label :title, class: 'c-field__label'
+			= f.text_field :title, class: 'c-input', :placeholder => "Название"
+			%small.c-field__message.u-color-success
+
+		.c-field
+			= f.label :body, class: 'c-field__label'
+			= f.text_area :body, class: 'c-input', :placeholder => "Статья"
+			%small.c-field__message.u-color-success
+		= f.button :сохранить , class: 'c-btn c-btn--success c-btn--fullwidth'
+		.br
+		= link_to 'назад', articles_path, class: 'c-btn c-btn--secondary c-btn--fullwidth'
+
+		.div
+			= f.label :Опубликовать
+			= f.check_box :published 
+		.form#custom-dropzone.dropzone.dz-clickable{:action => "/file-upload", :style => "height: 180px;"}
+			.dz-message{"data-dz-message" => ""}
+				%span{:style => "opacity: 0.5; width: 100%; height: 100%; position: absolute;"}
+					= f.file_field :picture ,{:style => "opacity: 0.005; width: 100%; height: 100%;"}
+					
+				%span Выберите фото для загрузки.
+
+

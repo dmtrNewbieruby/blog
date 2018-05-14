@@ -1,0 +1,19 @@
+%p
+	%strong название
+	= @article.title
+
+.p
+	%strong Автор
+	= @article.author
+
+.p
+	%strong Статья
+	= @article.body	
+.P
+	= image_tag @article.picture
+.P	 
+	%strong Публикация: 
+	= @article.published ? ' опубликован' : ' не опубликован'
+
+
+= link_to 'назад', articles_path , class: 'c-btn c-btn--secondary c-btn--fullwidth'

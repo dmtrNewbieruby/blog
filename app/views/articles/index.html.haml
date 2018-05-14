@@ -1,0 +1,24 @@
+%h1 Все созданные статьи
+= link_to 'создать новую статью', new_article_path, class: 'c-btn c-btn--success c-btn--fullwidth,fa fa-trash-o u-mr-xsmall'
+%table
+	%tr
+		%th Название
+		%th Автор	
+		%th Содержание
+
+	- @articles.each do |article|
+		%tr
+			%td 
+				= article.title
+			%td
+				= article.author
+			%td
+				= article.body
+			%td 
+				= article.published ? 'Опубликован' : 'Не опубликован' 
+			%td
+				= link_to 'просмотреть',  article_path(article) , class: 'c-btn c-btn--info c-btn--fullwidth,fa fa-trash-o u-mr-xsmall'
+				= link_to 'удалить', article_path(article), method: :delete, data:{confirm: 'Вы уверены?'}, class: 'c-btn c-btn--danger c-btn--fullwidth,fa fa-trash-o u-mr-xsmall'
+				= link_to 'редактировать' , edit_article_path(article), class: 'c-btn c-btn--fancy c-btn--fullwidth,fa fa-trash-o u-mr-xsmall'
+				= link_to "Delete article",  article_path(article), remote: true, method: :delete,data:{confirm: 'Вы уверены?'}
+
